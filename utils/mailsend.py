@@ -24,9 +24,10 @@ class MailSender:
 
     def __init__(self):
         self.__mail_server = 'smtp.exmail.qq.com'
-        self.__mail_user = 'report@lejent.com'
-        self.__mail_password = 'data@123'
-        self.__mail_from = 'report@lejent.com'
+        self.__mail_user = 'report@xxx.com'
+        self.__mail_password = 'xxxx'
+        self.__mail_from = 'report@xxx.com'
+        #TODO: add a correct email account
 
 
 
@@ -80,9 +81,9 @@ def send_att_mail(send_to, subject, text, files=[]):
 
     # 设定发送server
     mail_server = 'smtp.exmail.qq.com'
-    mail_user = 'report@lejent.com'
-    mail_password = 'data@123'
-    send_from = 'report@lejent.com'
+    mail_user = 'report@xxx.com'
+    mail_password = 'dataxxx'
+    send_from = 'report@xxx.com'
 
     msg = MIMEMultipart()
     msg['From'] = send_from
