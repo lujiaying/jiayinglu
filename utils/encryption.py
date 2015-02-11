@@ -1,5 +1,6 @@
-#coding: utf-8
+# coding: utf-8
 import hashlib
+
 
 def generate_signature(**kwargs):
     """
@@ -7,6 +8,10 @@ def generate_signature(**kwargs):
 
     @para **kwargs = {'install_id':.., 'random_para_name':random_para_key, 'random_para_key':.., 'version':.., 'platform':..}
     @return signature.hexdigest(): 十六进制表示的加密签名
+
+    @test script:
+    >>> generate_signature(**{'install_id': '1422040116327028', 'random_para_name': 'uKRJTFwvg', 'uKRJTFwvg': 'gWqqk14Wb4CPr8HCpCFPUh', 'version': '1.7.0126', 'platform': 'a'})
+    '9e121051771b86e8c828916e84538788'
     """
 
     signature = ''
@@ -15,14 +20,15 @@ def generate_signature(**kwargs):
     # 2.将三个参数字符串拼接成一个字符串进行md5加密
     sorted_keys = kwargs.keys()
     sorted_keys.sort()
-    concat_str = ''.join(map(lambda k:kwargs[k], sorted_keys))
+    concat_str = ''.join(map(lambda k: kwargs[k], sorted_keys))
     signature = hashlib.md5(concat_str)
 
     return signature.hexdigest()
 
+
 def check_signature(**kwargs):
     """
-    @brief 根据传入的字典，验证签名是否正确 
+    @brief 根据传入的字典，验证签名是否正确
 
     @para **kwargs = {'install_id':.., 'random_para_name':random_para_key, 'random_para_key':.., 'version':.., 'platform':.., 'signature':..}
     @return True or False
@@ -42,4 +48,6 @@ def check_signature(**kwargs):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()  #Doctest: documentation and unit-testing at the same time
+    doctest.testmod()  # Doctest: documentation and unit-testing at the same time
+
+    print check_signature()
