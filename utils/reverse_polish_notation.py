@@ -1,5 +1,9 @@
 # -*- coding: utf8 -*-
 
+'''
+逆波兰相关的函数
+'''
+
 def evalRPN(tokens):
     '''
     Evaluate the value of an arithmetic expression in Reverse Polish Notation.
