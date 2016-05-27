@@ -1,0 +1,31 @@
+syntax on " 语法高亮
+set number " 显示行号
+set cursorline " 突出显示当前行
+set ruler " 打开状态栏标尺
+set showcmd " 状态栏显示当前所执行的命令
+set history=600 " 保留历史记录 
+
+" 缩进
+set autoindent " 设置自动缩进
+set smartindent " 设置智能缩进
+set expandtab
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+:syntax on
+
+" ==========
+" 搜索
+set ignorecase smartcase " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set incsearch " 关闭显示查找匹配过程
+set hlsearch " 高亮显示搜索对内容
+
+set showmatch " 显示匹配的括号
+
+" 一旦一行大字符超出80个的话就把那些字符的背景设为红色
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+
+" pyflakes 代码检查
+filetype plugin indent on
+
