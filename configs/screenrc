@@ -1,0 +1,26 @@
+#取消screen的快捷键C-s
+defflow off
+#将Ctrl-a替换为Ctrl-z, 默认Ctrl-A是screen的命令模式
+escape ^Zz
+#关了闪屏
+vbell off
+#编码的配置
+#defencoding GBK
+#encoding UTF-8 GBK
+defencoding UTF-8
+encoding GBK UTF-8
+#定制自己需要的显示信息
+#altscreen on
+#caption always "%{= wk} %{= KY} [%n]%t @ %H %{-} %= %{-} %{= KG} ${USER} %{-} @v@ %{-} | %{= KG} %Y-%m-%d %{-}"
+hardstatus alwayslastline
+hardstatus string "%{= kG}[%{G}%H%{= r}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d%{W} %c:%s%{g}]"
+
+#快捷键，(note: K1表示F1,k;是F10)
+#bindkey -k k1 select 1  #F1 to select 1
+bindkey -k k2 screen     #F2 to new a screen
+bindkey -k k9 detach     #F9 to detach
+#bindkey -k k; detach    #F10 to detach
+bindkey -k k3 prev       #F3 to previous
+bindkey -k k4 next       #F4 to next
+bindkey -k k8 title      #f8 to rename a window
+
