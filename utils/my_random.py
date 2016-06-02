@@ -17,7 +17,7 @@ class Random(object):
         '''
         线性同余产生0~1之间的随机数
 
-        公式：X(k) = [a * X(k-1) + c] mod m
+        X(k) = [a * X(k-1) + c] mod m
         '''
         # 以下参数值参照GCC编译器
         m = 2**32
@@ -29,20 +29,20 @@ class Random(object):
     def random_MSM(self):
         '''
         平方取中法产生0~1之间的随机数
+
+        X(i+1) = [10^(-m/2) * X(i)^2] mod (10^m)
         '''
         m = 8
-        _seed_square = str(self._seed ** 2)
-        if len(_seed_square) < m * 2:
-            _seed_square.zfill(m*2 - len(_seed_square))
-        self._seed = long(_seed_square[4:12])
-        return self._seed / float(10 ** m)
-
+        self._seed = long((10**(-m/2) * self._seed * self._seed) % (10**m))
+        return self._seed / float(10**m -1)
 
 if __name__ == '__main__':
+    print('LCG random generator')
     random = Random()
-    for i in range(100):
+    for i in range(10):
         print(random.random_LCG())
 
+    print('MCM random generator')
     random = Random()
-    for i in range(100):
+    for i in range(10):
         print(random.random_MSM())
