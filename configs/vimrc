@@ -29,3 +29,5 @@ set showmatch " 显示匹配的括号
 " pyflakes 代码检查
 filetype plugin indent on
 
+" 颜色主题
+colorscheme zellner
