@@ -1,6 +1,4 @@
-"""
-回归模型选择
-"""
+# coding: utf-8
 
 from sklearn import linear_model
 from sklearn import ensemble
@@ -17,7 +15,7 @@ import itertools
 if __name__ == '__main__':
     fopen = open('./report_price', 'w')
 
-    X, y = load_svmlight_file('./uv_5features_price.dat')
+    X, y = load_svmlight_file('./uv_incRatio_without_outliers.dat')
     fopen.write('Regresser\talpha\tMAE\tMSE\tMedianAE\tR^2\tCorrCoef\tP-Value\t')
     coefs = []
     for i in range(X.shape[1]):
@@ -65,8 +63,16 @@ if __name__ == '__main__':
         print 'mean_squared_error:', MSE
         print 'median_absolute_error:', MedianAE
         print 'r2_score:', r2_score
-        print 'correlation coefficient of true and pred:', corr_coef, 'p-value:', p_value
+        print 'correlation coefficient of true and pred:', corr_coef, ', p-value:', p_value
         fopen.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t' % (clf_name, clf_param, MAE, MSE, MedianAE, r2_score, corr_coef, p_value))
+        """
+        离线评价指标，A = (预测值－实际值) / 实际值 * 100%
+        A取值    | (-inf, -1) | [-1, -0.75) | [-0.75, 0.5) | [-0.5, -0.25) | [-0.25, 0) | [0, 0.25) | [0.25, 0.5) | [0.5, 0.75) | [0.75, 1) | [1, inf)
+        评估标准 |                    < 5%                 |      < 10%    |            > 70%       |     < 10%   |                < 5%
+        """
+        A = (pred-y)/y
+        print 'A belongs to [-0.25, 0.25) = ', A[(A >= -0.25) & (A <0.25)].shape[0] / float(A.shape[0])
+        print 'A belongs to [-0.5, -0.25) & [0.25, 0.5) = ', (A[(A >= -0.5) & (A < -0.25)].shape[0] + A[(A >= 0.25) & (A < 0.5)].shape[0] ) / float(A.shape[0])
         ## Stage fit all sample
         print '# fit loss'
         clf.fit(X, y)
