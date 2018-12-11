@@ -45,7 +45,7 @@ Plugin 'vim-scripts/mru.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-powerline'
 "Plugin 'scrooloose/syntastic'
-Plugin 'w0rp/ale'   " require vim8
+Plugin 'w0rp/ale'   " require vim8; python checker require flake8, pylint
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
