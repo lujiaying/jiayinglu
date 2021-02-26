@@ -16,37 +16,33 @@ set shiftwidth=4
 set softtabstop=4
 set backspace=2
 set t_Co=256
-"colorscheme desert
+
 
 " ==========
 " Search Conf
 set ignorecase smartcase
 set incsearch
 set hlsearch
-
 set showmatch
 
+
 " ==========
-" Vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" vim-plug
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'ervandew/supertab'
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
+Plug 'junegunn/fzf'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Initialize plugin system
+call plug#end()
 
-Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/mru.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/vim-powerline'
-"Plugin 'scrooloose/syntastic'
-Plugin 'w0rp/ale'   " require vim8; python checker require flake8, pylint
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" ale config
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
